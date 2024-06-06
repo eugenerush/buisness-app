@@ -1,0 +1,24 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Удаление работника{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Удаление работника: {{ worker.worker_name }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ worker.worker_name }}</p>
+                <p>{{ worker.worker_phone }}</p>
+                <p>{{ worker.car }}</p>
+                <span>{{ error }}</span>
+                <p>Вы точно хотите удалить этого работника ?</p>
+                <button class="btn btn-success" type="submit">Удалить работника</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

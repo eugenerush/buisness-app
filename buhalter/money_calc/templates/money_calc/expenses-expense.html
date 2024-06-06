@@ -1,0 +1,20 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Трата{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <p>{{ expense.expense }}</p>
+            <p>{{ expense.cost }}</p>
+            <p>{{ expense.data_expense }}</p>
+
+            <a href="{% url 'expense-delete' expense.id %}" class="btn btn-danger">Удалить трату</a>
+            <a href="{% url 'expense-update' expense.id %}" class="btn btn-info">Обновить трату</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

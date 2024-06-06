@@ -1,0 +1,22 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Добавление работника{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h1>Форма для добавления работника</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.worker_name }}
+                {{ form.worker_phone }}
+                {{ form.car }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Добавить работника</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Карточка заказчика{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Заказчик: {{ agent.id }}</h3>
+            <p>{{ agent.agent_name }}</p>
+            <p>{{ agent.agent_phone }}</p>
+            <p>Сумма заказов: {{ total_sum }}₽</p>
+            <p>- Нал: {{ cash }} ₽.</p>
+            <p>- Безнал: {{ card }} ₽</p>
+            <p>- с НДС: {{ law }} ₽</p>
+            <p>Средний чек: {{ avg_order_sum|floatformat:0 }}₽</p>
+
+
+        {% for order in orders %}
+            <p>{{ order }}</p>
+        {% endfor %}
+
+        <a href="{% url 'agent-delete' agent.id %}" class="btn btn-danger">Удалить заказчика</a>
+        <a href="{% url 'agent-update' agent.id %}" class="btn btn-info">Обновить заказчика</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Удаление задачи{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ tasks.comment }}</p>
+                <p>{{ tasks.publish_data }}</p>
+                <p>{{ tasks.get_task_type_display }}</p>
+                <p>{{ tasks.get_task_status_display }}</p>
+                <span>{{ error }}</span>
+                <p>Вы точно хотите удалить эту задачу ?</p>
+                <button class="btn btn-success" type="submit">Удалить задачу</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

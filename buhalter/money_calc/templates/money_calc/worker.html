@@ -1,0 +1,31 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Работники{% endblock %}
+
+{% block content %}
+
+{% if latest_worker_list %}
+    <div class="container">
+        <div class="row">
+
+        {% for worker in latest_worker_list %}
+
+            <div class="col-md-4 block">
+
+                <div class="field-block">{{ worker.worker_name }}</div>
+                <div class="field-block">{{ worker.worker_phone }}</div>
+                <div class="field-block">{{ worker.car }}</div>
+                <a href="{% url 'worker-orders' worker.id %}" class="text-block-btn">Посмотреть работника {{ worker.worker_id }}</a>
+
+            </div>
+
+        {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+    <p>No workers are available.</p>
+{% endif %}
+
+{% endblock %}

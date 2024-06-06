@@ -1,0 +1,65 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Заказы{% endblock %}
+
+{% block content %}
+
+
+{% if future_orders %}
+    <div class="container">
+        <div class="row">
+
+            {% for order in future_orders %}
+
+            <div class="col-md-12 fu-order">
+
+                <div class="col-md-2 field">{{ order.publish_data }}</div>
+                <div class="col-md-2 field">{{ order.worker }}</div>
+                <div class="col-md-2 field">{{ order.agent }}</div>
+                <div class="col-md-2 field">{{ order.sum }}₽</div>
+                <div class="col-md-1 field">{{ order.get_payment_method_display }}</div>
+                <div class="col-md-2 field">{{ order.get_payment_status_display }}</div>
+                <div class="col-md-8 comment">{{ order.comment|truncatechars:40 }}</div>
+                <a href="{% url 'order-detail' order.order_id %}"><div class="col-md-3 text-btn">Посмотреть заказ #{{ order.order_id }}</div></a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+    <p>Выполненные заказы:</p>
+{% endif %}
+
+
+{% if latest_order_list %}
+    <div class="container">
+        <div class="row">
+
+            {% for order in latest_order_list %}
+
+            <div class="col-md-12 order">
+
+                <div class="col-md-2 field">{{ order.publish_data }}</div>
+                <div class="col-md-2 field">{{ order.worker }}</div>
+                <div class="col-md-2 field">{{ order.agent }}</div>
+                <div class="col-md-2 field">{{ order.sum }}₽</div>
+                <div class="col-md-1 field">{{ order.get_payment_method_display }}</div>
+                <div class="col-md-2 field">{{ order.get_payment_status_display }}</div>
+                <div class="col-md-8 comment">{{ order.comment|truncatechars:40 }}</div>
+                <a href="{% url 'order-detail' order.order_id %}"><div class="col-md-3 text-btn">Посмотреть заказ #{{ order.order_id }}</div></a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+    <p>No orders are available.</p>
+{% endif %}
+
+{% endblock %}

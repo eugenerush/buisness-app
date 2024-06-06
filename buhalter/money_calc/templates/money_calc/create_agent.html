@@ -1,0 +1,22 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Добавление заказчика{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h1>Форма для добавления заказчика</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.agent_name }}
+                {{ form.agent_phone }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Добавить заказчика</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

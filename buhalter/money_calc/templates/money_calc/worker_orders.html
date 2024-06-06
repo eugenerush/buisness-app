@@ -1,0 +1,30 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Карточка работника{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Работник: {{ worker.id }}</h3>
+            <p>{{ worker.worker_name }}</p>
+            <p>{{ worker.worker_phone }}</p>
+            <p>{{ worker.car }}</p>
+            <p>Сумма заказов: {{ total_sum }}₽</p>
+            <p>- Нал: {{ cash }} ₽.</p>
+            <p>- Безнал: {{ card }} ₽</p>
+            <p>- с НДС: {{ law }} ₽</p>
+            <p>Средний чек: {{ avg_order_sum|floatformat:0 }}₽</p>
+
+        {% for order in orders %}
+            <p>{{ order }}</p>
+        {% endfor %}
+
+        <a href="{% url 'worker-delete' worker.id %}" class="btn btn-danger">Удалить работника</a>
+        <a href="{% url 'worker-update' worker.id %}" class="btn btn-info">Обновить работника</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

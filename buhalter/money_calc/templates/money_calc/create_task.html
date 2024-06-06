@@ -1,0 +1,24 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Добавление задачи{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h1>Форма для добавления задачи</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.comment }}
+                {{ form.publish_data }}
+                {{ form.task_type }}
+                {{ form.task_status }}
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Добавить задачу</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

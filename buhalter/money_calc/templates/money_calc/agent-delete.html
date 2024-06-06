@@ -1,0 +1,23 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Удаление заказчика{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Удаление заказчика: {{ agent.id }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ agent.agent_name }}</p>
+                <p>{{ agent.agent_phone }}</p>
+                <span>{{ error }}</span>
+                <p>Вы точно хотите удалить этого заказчика ?</p>
+                <button class="btn btn-success" type="submit">Удалить заказчика</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

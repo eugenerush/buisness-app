@@ -1,0 +1,28 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Удаление заказа{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Удаление заказа: {{ order.order_id }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ order.publish_data }}</p>
+                <p>{{ order.worker_name }}</p>
+                <p>{{ order.agent_name }}</p>
+                <p>{{ order.sum }}</p>
+                <p>{{ order.payment_method }}</p>
+                <p>{{ order.payment_status }}</p>
+                <p>{{ order.comment }}</p>
+                <span>{{ error }}</span><br>
+                <p>Вы точно хотите удалить этот заказ ?</p>
+                <button class="btn btn-success" type="submit">Удалить заказ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

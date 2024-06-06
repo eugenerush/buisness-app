@@ -1,0 +1,33 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+
+{% if latest_task_list %}
+
+<div class="container">
+    <div class="row">
+
+        {% for task in latest_task_list %}
+
+        <div class="col-md-12 order">
+
+            <div class="col-md-12 field">{{ task.comment }}</div>
+            <div class="col-md-2 field">{{ task.get_task_type_display }}</div>
+            <div class="col-md-2 field">{{ task.get_task_status_display }}</div>
+            <div class="col-md-2 field">{{ task.publish_data }}</div>
+            <a href="{% url 'tasks-task' task.id %}"><div class="col-md-2 text-btn">Посмотреть задачу {{ task.id }}</div></a>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+    <p>No tasks are available.</p>
+{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

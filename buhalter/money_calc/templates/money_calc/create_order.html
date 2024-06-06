@@ -1,0 +1,27 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Добавление заказа{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h1>Форма для добавления заказа</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.publish_data }}
+                {{ form.worker }}
+                {{ form.agent }}
+                {{ form.sum }}
+                {{ form.payment_method }}
+                {{ form.payment_status }}<br>
+                {{ form.comment }}
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Добавить заказ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

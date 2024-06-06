@@ -1,0 +1,61 @@
+{% extends 'money_calc/layout.html' %}
+{% load custom_filters %}
+
+{% block title %}Заказы{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 index-item">
+            <div class="analys">
+                <h2 class="column-title">Аналитика</h2>
+                <p class="punkt">Количество заказов: {{ count_order }}</p>
+                <p class="punkt">Средний чек: {{ avg_order_sum|floatformat:0 }}₽</p>
+                <p class="sub-punkt">Из них оплачено: {{ orders_pay_count }} шт.</p>
+                <p class="pod-punkt">- Нал: {{ orders_pay_cash_count }} шт.</p>
+                <p class="pod-punkt">- Безнал: {{ orders_pay_card_count }} шт.</p>
+                <p class="pod-punkt">- с НДС: {{ orders_pay_law_count }} шт.</p>
+                <p class="sub-punkt">Из них не оплачено: {{ orders_not_pay_count }} шт.</p>
+                <p class="pod-punkt">- Нал: {{ orders_not_pay_cash_count }} шт.</p>
+                <p class="pod-punkt">- Безнал: {{ orders_not_pay_card_count }} шт.</p>
+                <p class="pod-punkt">- с НДС: {{ orders_not_pay_law_count }} шт.</p>
+
+                <div class="anal-avg">
+
+                    {% for day_name, analytics_value in day_names|slice:"1:"|zip_lists:analytics %}
+
+                    <div class="anal-day">
+                        <div class="day">{{ day_name }}</div>
+                        <div class="day-avg">{{ analytics_value }}₽</div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 index-item">
+            <div class="profit">
+                <h2 class="column-title">Доходы</h2>
+                <p class="punkt">Сумма оплаченных заказов: {{ pay_sum }}₽</p>
+                <p class="punkt">Сумма не оплаченных заказов: {{ not_pay_sum }}₽</p>
+                <a href="{% url 'not_pay_orders' %}"><div class="text-index-btn">Посмотреть неоплаченные заказы</div></a>
+            </div>
+        </div>
+
+        <div class="col-md-4 index-item">
+            <div class="expenses">
+                <a href="{% url 'expenses' %}"><h2 class="column-title exp">Расходы {{ expense_sum }}₽</h2></a>
+                {% for expense in latest_expense_list %}
+                    <p class="punkt">{{ expense }}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

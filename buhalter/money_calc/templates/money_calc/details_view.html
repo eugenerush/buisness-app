@@ -1,0 +1,25 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Детали заказа{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Заказ номер: {{ order.order_id }}</h3>
+            <p>{{ order.publish_data }}</p>
+            <p>{{ order.worker_name }}</p>
+            <p>{{ order.agent_name }}</p>
+            <p>{{ order.sum }}</p>
+            <p>{{ order.get_payment_method_display }}</p>
+            <p>{{ order.get_payment_status_display }}</p>
+            <p>{{ order.comment }}</p>
+            <p>{{ order.created_data }}</p>
+            <a href="{% url 'order-delete' order.order_id %}" class="btn btn-danger">Удалить заказ</a>
+            <a href="{% url 'order-update' order.order_id %}" class="btn btn-info">Обновить заказ</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

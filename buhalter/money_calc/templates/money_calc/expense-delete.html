@@ -1,0 +1,24 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Удаление траты{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <h3>Удаление траты: {{ expenses.expense }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ expenses.expense }}</p>
+                <p>{{ expenses.cost }}</p>
+                <p>{{ expenses.data_expense }}</p>
+                <span>{{ error }}</span>
+                <p>Вы точно хотите удалить эту трату ?</p>
+                <button class="btn btn-success" type="submit">Удалить трату</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

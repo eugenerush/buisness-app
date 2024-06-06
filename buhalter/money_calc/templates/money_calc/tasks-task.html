@@ -1,0 +1,21 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Задача{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main-info">
+            <p>{{ task.comment }}</p>
+            <p>Степень: {{ task.get_task_type_display }}</p>
+            <p>Ход выполнения: {{ task.get_task_status_display }}</p>
+            <p>Сделать до {{ task.publish_data }}</p>
+
+            <a href="{% url 'task-delete' task.id %}" class="btn btn-danger">Удалить задачу</a>
+            <a href="{% url 'task-update' task.id %}" class="btn btn-info">Обновить задачу</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

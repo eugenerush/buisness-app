@@ -1,0 +1,31 @@
+{% extends 'money_calc/layout.html' %}
+
+{% block title %}Заказчики{% endblock %}
+
+{% block content %}
+
+{% if latest_agent_list %}
+
+    <div class="container">
+        <div class="row">
+
+            {% for agent in latest_agent_list %}
+
+            <div class="col-md-4 block">
+
+                <div class="field-block">{{ agent.agent_name }}</div>
+                <div class="field-block">{{ agent.agent_phone }}</div>
+                <a href="{% url 'agent-detail' agent.id %}" class="text-block-btn">Посмотреть заказчика {{ worker.id }}</a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+    <p>No agents are available.</p>
+{% endif %}
+
+{% endblock %}
